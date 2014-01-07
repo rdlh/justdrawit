@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>JustDraw.it</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Loading Bootstrap -->
+    <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+
+    <!-- Loading Flat UI -->
+    <link href="css/flat-ui.css" rel="stylesheet">
+    <link href="css/demo.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <link rel="shortcut icon" href="images/favicon.ico">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="container">
+        <div class="row">
+        <h1 class="demo-logo">
+            JustDraw.it
+            <small>collaborativ' drawing table</small>
+            </h1>
+        </div>
+        <div class="row demo-tiles">
+            <div class="col-lg-12">
+                <div class="tile">
+                    <canvas id="drawing-canvas" width="900px" height="300px"></canvas>
+                    <div id="colorholder">
+                    </div>
+
+                        <input type="range" value="1" max="21" min="1" step="5">
+                </div>
+
+            </div>
+        </div>
+        <div class="row demo-tiles">
+            <div class="col-md-3">
+                <div class="tile">
+                    <button class="btn btn-primary btn-block" data-toggle="modal" data-target="#myModal">
+                        <span class="fui-new"></span> Share
+                    </button>
+                </div>
+                <div id="presenceDiv" class="tile">
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="tile">
+                    <div id='messagesDiv'></div>
+                    <div class="form-group">
+                        <input type="text" value="" id="messageInput" placeholder="Message..." class="form-control" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-7">
+            <h3 class="footer-title">WTF is that ?</h3>
+            <p>JustDraw.it is a cool and collaborativ' drawing table written in Javascript.<br/>
+              This app was released by Rémi Delhaye<br/>
+              His website: <a href="http://remidelhaye.fr" target="_blank">http://remidelhaye.fr</a>
+            </p>
+
+            <p class="pvl">
+              <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://justdraw.it" data-text="Let's discover this cool and collaborativ' drawing table !" data-via="DesLaids">Tweet</a>
+                            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+              <iframe src="http://ghbtns.com/github-btn.html?user=rdlh&repo=justdrawit&type=watch&count=true" height="20" width="107" frameborder="0" scrolling="0" style="width:105px; height: 20px;" allowTransparency="true"></iframe>
+              <iframe src="http://ghbtns.com/github-btn.html?user=rdlh&repo=justdrawit&type=fork&count=true" height="20" width="107" frameborder="0" scrolling="0" style="width:105px; height: 20px;" allowTransparency="true"></iframe>
+              <iframe src="http://ghbtns.com/github-btn.html?user=rdlh&type=follow&count=true" height="20" width="195" frameborder="0" scrolling="0" style="width:195px; height: 20px;" allowTransparency="true"></iframe>
+            </p>
+          </div> <!-- /col-md-7 -->
+
+          <div class="col-md-5">
+            <div class="footer-banner">
+              <h3 class="footer-title">JustDraw.it</h3>
+              <ul>
+                <li><span class="fui-new"></span> Easy to use</li>
+                <li><span class="fui-user"></span> Collaborative</li>
+                <li><span class="fui-check"></span> Free</li>
+                <li><span class="fui-lock"></span> Ad free</li>
+                <li><span class="fui-gear"></span> Powerfull</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">Sharing</h4>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <!-- Load JS here for greater good =============================-->
+    <script src="js/jquery-1.8.3.min.js"></script>
+    <script src="js/jquery-ui-1.10.3.custom.min.js"></script>
+    <script src="js/jquery.ui.touch-punch.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap-select.js"></script>
+    <script src="js/bootstrap-switch.js"></script>
+    <script src="js/flatui-checkbox.js"></script>
+    <script src="js/flatui-radio.js"></script>
+    <script src="js/jquery.tagsinput.js"></script>
+    <script src="js/jquery.placeholder.js"></script>
+    <script src="https://cdn.firebase.com/v0/firebase.js"></script>
+    <script src="https://www.firebase.com/js/libs/idle.js"></script>
+    <script src="js/script.js"></script>
+  </body>
+</html>
