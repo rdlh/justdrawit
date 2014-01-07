@@ -1,10 +1,10 @@
 $(document).ready(function () {
 
-  $('#url_share').val(document.location);
+  $('#url_share').val(document.location.href);
 
-  $('#facebook_share').attr('href', 'https://www.facebook.com/sharer/sharer.php?u=' + document.location);
+  $('#facebook_share').attr('href', 'https://www.facebook.com/sharer/sharer.php?u=' + document.location.href);
 
-  $('#twitter_share').attr('data-url', document.location);
+  $('#twitter_share').attr('data-url', document.location.href);
 
   $('#select_url_share').click(function(){
     $( "#url_share" ).select();
