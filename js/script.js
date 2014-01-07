@@ -149,17 +149,17 @@ $(document).ready(function () {
   });
 
   document.onIdle = function () {
-    setUserStatus("absent");
+    setUserStatus("inactif");
   }
   document.onAway = function () {
-    setUserStatus("inactif");
+    setUserStatus("absent");
   }
   document.onBack = function (isIdle, isAway) {
     setUserStatus("en ligne");
   }
 
-  setIdleTimeout(5000);
-  setAwayTimeout(10000);
+  setIdleTimeout(10000);
+  setAwayTimeout(60000);
 
   // CHAT
 
