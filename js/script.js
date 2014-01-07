@@ -1,5 +1,15 @@
 $(document).ready(function () {
 
+  $('#url_share').val(document.location);
+
+  $('#facebook_share').attr('href', 'https://www.facebook.com/sharer/sharer.php?u=' + document.location);
+
+  $('#twitter_share').attr('data-url', document.location);
+
+  $('#select_url_share').click(function(){
+    $( "#url_share" ).select();
+  })
+
   if(window.location.hash) {
     var room = window.location.hash.split('#')[1];
   } else {
@@ -41,7 +51,7 @@ $(document).ready(function () {
     e.preventDefault();
     var offset = $('canvas').offset();
     var x1 = Math.floor((e.pageX - offset.left) / pixSize - 1),
-      y1 = Math.floor((e.pageY - offset.top) / pixSize - 1);
+        y1 = Math.floor((e.pageY - offset.top) / pixSize - 1);
     var x0 = (lastPoint == null) ? x1 : lastPoint[0];
     var y0 = (lastPoint == null) ? y1 : lastPoint[1];
     var dx = Math.abs(x1 - x0), dy = Math.abs(y1 - y0);
@@ -69,6 +79,7 @@ $(document).ready(function () {
 
   var drawPixel = function(snapshot) {
     var coords = snapshot.name().split(":");
+    myContext.lineWidth = 5;
     myContext.fillStyle = "#" + snapshot.val();
     myContext.fillRect(parseInt(coords[0]) * pixSize, parseInt(coords[1]) * pixSize, pixSize, pixSize);
   };
