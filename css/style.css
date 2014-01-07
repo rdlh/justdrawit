@@ -9,6 +9,7 @@ h1 {
 }
 
 /* Chat */
+
 #messagesDiv {
   background-color: white;
   overflow: auto;
@@ -51,4 +52,20 @@ h1 {
 
 #presenceDiv {
   text-align: center;
+}
+
+.presenceDiv {
+  border-bottom: 1px solid #1abc9c;
+  font-size: 16px;
+}
+
+.presenceDiv:first-child {
+  border-top: 1px solid #1abc9c;
+  font-size: 16px;
+}
+
+.presenceDiv:last-child {
+  border-top: 0px;
+  border-bottom: 0px;
+  font-size: 16px;
 }

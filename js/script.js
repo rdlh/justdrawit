@@ -1,25 +1,29 @@
 $(document).ready(function () {
 
-  $('#url_share').val(document.location);
+  $('#url_share').val(document.location.href);
 
-  $('#facebook_share').attr('href', 'https://www.facebook.com/sharer/sharer.php?u=' + document.location);
+  $('#facebook_share').attr('href', 'https://www.facebook.com/sharer/sharer.php?u=' + document.location.href);
 
-  $('#twitter_share').attr('data-url', document.location);
+  $('#twitter_share').attr('href', "https://twitter.com/intent/tweet?original_referer=&text=Let's%20discover%20my%20new%20cool%20and%20collaborativ'%20draw%20!&tw_p=tweetbutton&url=" + encodeURIComponent(document.location.href) + "&via=DesLaids");
 
   $('#select_url_share').click(function(){
     $( "#url_share" ).select();
   })
 
-  if(window.location.hash) {
-    var room = window.location.hash.split('#')[1];
+  $('#clear_draw').click(function(){
+    clearDraw();
+  })
+
+  if(window.location.search) {
+    var room = window.location.search.split('=')[1];
   } else {
     var room = Math.floor(Math.random() * 1000000000000000);
-    window.location.hash = '#' + room;
+    window.location.search = '?room=' + room;
   }
 
   var pixSize = 1, lastPoint = null, currentColor = "000", mouseDown = 0;
 
-  var pixelDataRef = new Firebase('https://justdrawit.firebaseio.com/' + room);
+  var pixelDataRef = new Firebase('https://justdrawit.firebaseio.com/' + room + '/draw');
 
   var myCanvas = document.getElementById('drawing-canvas');
   var myContext = myCanvas.getContext ? myCanvas.getContext('2d') : null;
@@ -38,6 +42,10 @@ $(document).ready(function () {
       };
     })());
     item.appendTo('#colorholder');
+  }
+
+  function clearDraw() {
+    pixelDataRef.remove();
   }
 
   myCanvas.onmousedown = function () {mouseDown = 1;};
@@ -79,7 +87,6 @@ $(document).ready(function () {
 
   var drawPixel = function(snapshot) {
     var coords = snapshot.name().split(":");
-    myContext.lineWidth = 5;
     myContext.fillStyle = "#" + snapshot.val();
     myContext.fillRect(parseInt(coords[0]) * pixSize, parseInt(coords[1]) * pixSize, pixSize, pixSize);
   };
@@ -94,15 +101,15 @@ $(document).ready(function () {
   if (localStorage) {
     if (localStorage['my_name'] === undefined) {
       var my_name = prompt("Your name?", "Guest"),
-          currentStatus = "★ online";
+          currentStatus = "en ligne ★";
       localStorage['my_name'] = my_name;
     } else {
       var my_name = localStorage['my_name'],
-          currentStatus = "★ online";
+          currentStatus = "en ligne ★";
     }
   } else {
     var my_name = prompt("Your name?", "Guest"),
-        currentStatus = "★ online";
+        currentStatus = "en ligne ★";
   }
 
   var userListRef = new Firebase("https://justdrawit.firebaseio.com/" + room + '/presences');
@@ -113,7 +120,7 @@ $(document).ready(function () {
   connectedRef.on("value", function(isOnline) {
     if (isOnline.val()) {
       myUserRef.onDisconnect().remove();
-      setUserStatus("en ligne");
+      setUserStatus("en ligne ★");
     } else {
       setUserStatus(currentStatus);
     }
@@ -134,6 +141,7 @@ $(document).ready(function () {
     $("<div/>")
       .attr("id", getMessageId(snapshot))
       .text(user.name + " est " + user.status)
+      .addClass('presenceDiv')
       .appendTo("#presenceDiv");
   });
 
@@ -155,7 +163,7 @@ $(document).ready(function () {
     setUserStatus("absent");
   }
   document.onBack = function (isIdle, isAway) {
-    setUserStatus("en ligne");
+    setUserStatus("en ligne ★");
   }
 
   setIdleTimeout(10000);
